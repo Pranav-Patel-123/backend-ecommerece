@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+motor
+python-dotenv
+cloudinary
+stripe
+python-multipart
+PyJWT
+passlib
+pydantic[email]
