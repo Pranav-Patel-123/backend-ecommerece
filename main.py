@@ -55,12 +55,12 @@ app.include_router(order_router, prefix="/orders", tags=["Orders"])
 app.include_router(category_router, prefix="/category", tags=["Category Management"])
 
 # Root Endpoint
-@app.get("/", tags=["Root"])
-def home():
+@app.get("/")
+async def root():
     return {"message": "Welcome to the E-commerce API - Secure & Optimized"}
 
 # Run the app when executed directly
-if __name__ == "__main__":
-    HOST = os.getenv("HOST", "0.0.0.0")
-    PORT = int(os.getenv("PORT", 7860))
-    uvicorn.run(app, host=HOST, port=PORT)
+# if __name__ == "__main__":
+#     HOST = os.getenv("HOST", "0.0.0.0")
+#     PORT = int(os.getenv("PORT", 7860))
+#     uvicorn.run(app, host=HOST, port=PORT)
