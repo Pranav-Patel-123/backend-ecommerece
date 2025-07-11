@@ -18,7 +18,6 @@ app = FastAPI(
     title="E-commerce API",
     description="FastAPI Backend for E-commerce Platform",
     version="1.0",
-    root_path="/",  # Explicitly set root path
     redirect_slashes=False  # Disable automatic trailing slash redirects
 )
 
@@ -37,14 +36,14 @@ app.add_middleware(
     allow_headers=["Authorization", "Content-Type"],
 ) 
 
-# 🔹 Fix: Enforce HTTPS if request is incorrectly redirected
-@app.middleware("http")
-async def force_https_middleware(request: Request, call_next):
-    """Ensure all requests use HTTPS to avoid Mixed Content errors."""
-    if request.headers.get("x-forwarded-proto") == "http":
-        url = request.url.replace(scheme="https")
-        return RedirectResponse(url=str(url))
-    return await call_next(request)
+# # 🔹 Fix: Enforce HTTPS if request is incorrectly redirected
+# @app.middleware("http")
+# async def force_https_middleware(request: Request, call_next):
+#     """Ensure all requests use HTTPS to avoid Mixed Content errors."""
+#     if request.headers.get("x-forwarded-proto") == "http":
+#         url = request.url.replace(scheme="https")
+#         return RedirectResponse(url=str(url))
+#     return await call_next(request)
 
 # Register Routes
 app.include_router(customer_auth_router, prefix="/customer-auth", tags=["Customer Authentication"])
